@@ -37,7 +37,7 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
    - Log Collector and Log Collector Group configured
    - Panorama registration PIN generated in the Customer Support Portal --> Device Certificates
    - Panorama registration string generated
-   - Configure log forwarding profile and security policies either manually or automátically (see Terraform optional template below)
+   - Configure log forwarding profile and security policies either manually or automátically (see item #6 in deployment section below)
    
 3. Git clone this repository: https://github.com/DctrG/azure-vnet-cngfw.git (or download its content to your computer)
 
@@ -65,7 +65,7 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
 5. The public IP of the CNGFW will be shown in the terraform output
 
 6. Optional. If you want Terraform to create the logging profile and security policies, do the following:
-   - Edit the file Panorama/terraform.tfvars and provide your Panorama IP, admin user/passwd, and Device Group name
+   - Edit the file Panorama/terraform.tfvars and provide your Panorama IP, admin user/passwd, Device Group name, Log Forwarding Profile name and Template Stack name 
    - Run
    ```bash
    cd Panorama
@@ -75,16 +75,18 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
 
 ## Testing
 
-1. From your computer, browse to the CNGFW public ip address on port 8080, this will DNAT to one of the cngfw-linuxvm-1 on port 80 displaying the Apache welcome page
+1. In Panorama, verify the Cloud NGFW firewalls are under Managed Devices and connected, then do a commit & push 
 
-2. From Azure Portal, go into the serial console of \<prefix\>-cngfw-linuxvm-1
+2. From your computer, browse to the CNGFW public ip address on port 8080, this will DNAT to \<prefix\>-cngfw-linuxvm-1 on port 80 displaying the Apache welcome page
+
+3. From Azure Portal, go into the serial console of \<prefix\>-cngfw-linuxvm-1
    ```bash
    sudo apt update         # connects to apt sources (allowed)
    wget 10.113.1.4         # downloads index.html from <prefix>-cngfw-linuxvm-2 (allowed)
    wget 10.113.1.4:4444    # denied
    wget www.google.com     # denied
    ```
-3. Go to Panorama Monitor, filter by the correct Device Group and inspect the logs
+4. Go to Panorama Monitor, filter by the correct Device Group and inspect the logs
 
 ## Destroying
    ```bash  
