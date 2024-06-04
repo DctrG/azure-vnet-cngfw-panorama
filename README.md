@@ -12,7 +12,7 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
 
 ## Prerequisites
 
-1. Terraform and azure-cli installed in your computer (alternatively, use Azure Cloud Shell)
+1. Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and [Azure CLI ](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) on your computer (or use Azure Cloud Shell)
    - Log into Azure
       ```bash
       az login
@@ -36,10 +36,10 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
    - Template Stack configured
    - Log Collector and Log Collector Group configured
    - Panorama registration PIN generated in the Customer Support Portal --> Device Certificates
-   - Panorama registration string generated
-   - Configure log forwarding profile and security policies either manually or automátically (see item #6 in deployment section below)
+   - Panorama registration string generated in the Azure CNGFW section of the Panorama Azure Plugin
+   - Configure log forwarding profile and security policies either manually or automatically (see item #6 in deployment section below)
    
-3. Git clone this repository: https://github.com/DctrG/azure-vnet-cngfw.git (or download its content to your computer)
+3. Git clone this repository: https://github.com/DctrG/azure-vnet-cngfw.git (or download its content to your computer or Azure Cloud Shell)
 
 ## Deployment
 
@@ -65,7 +65,7 @@ Based on the deployment guide: https://www.paloaltonetworks.com/resources/guides
 5. The public IP of the CNGFW will be shown in the terraform output
 
 6. Optional. If you want Terraform to create the logging profile and security policies, do the following:
-   - Edit the file Panorama/terraform.tfvars and provide your Panorama IP, admin user/passwd, Device Group name, Log Forwarding Profile name and Template Stack name 
+   - Edit the file Panorama/terraform.tfvars and provide your Panorama IP, admin user/passwd, Log Forwarding Profile name, Device Group name and Template Stack name 
    - Run
    ```bash
    cd Panorama
