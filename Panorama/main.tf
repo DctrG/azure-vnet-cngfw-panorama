@@ -22,7 +22,6 @@ data "terraform_remote_state" "cngfw" {
 
 resource "panos_panorama_template_stack" "cngfw_azure_template_stack" {
     name = var.template_stack
-    description = "description here"
 
     lifecycle {
         create_before_destroy = true
