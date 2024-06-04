@@ -33,7 +33,7 @@ resource "azurerm_network_interface" "cngfw_nic_2" {
 }
 
 resource "azurerm_storage_account" "cngfw_storage" {
-  name                     = "${var.prefix}cngfwstorage"
+  name                     = "${var.prefix}store"
   location                 = azurerm_resource_group.cngfw_rg.location
   resource_group_name      = azurerm_resource_group.cngfw_rg.name
   account_tier             = "Standard"
