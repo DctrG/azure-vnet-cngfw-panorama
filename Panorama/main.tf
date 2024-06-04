@@ -30,7 +30,7 @@ resource "panos_panorama_template_stack" "cngfw_azure_template_stack" {
 }
 
 resource "panos_panorama_log_forwarding_profile" "cngfw-logging" {
-  name = var.log_collector_group
+  name = var.log_forwarding_profile
   device_group = var.device_group
   enhanced_logging = true
   match_list {

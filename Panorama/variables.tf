@@ -10,7 +10,7 @@ variable "panorama_password" {
   type    = string
 }
 
-variable "log_collector_group" {
+variable "log_forwarding_profile" {
   type = string
 }
 
